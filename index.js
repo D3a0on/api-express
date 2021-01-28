@@ -10,14 +10,22 @@ api.use((req,res,next)=>{
     next(); 
 })
 
+
+api.get('/', cors(), (req, res) => {
+    res.json({"res":"ok"})
+
+})
+
+const PORT = process.env.PORT || 8877;
+
 api.get('/:key', cors(),(req, res)=> {
 
     const key = req.params.key
     if(key == 'admin'){
-        res.send({"login":true,
+        res.json({"login":true,
     "redirect":"none"})
     }else {
-        res.send({
+        res.json({
             "login":false
         })
     }
@@ -25,6 +33,6 @@ api.get('/:key', cors(),(req, res)=> {
 
 
 
-api.listen(3000, ()=> {
+api.listen(PORT, ()=> {
     console.log('on')
 })
